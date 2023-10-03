@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const { default: mongoose } = require('mongoose');
+const userAuthRouters = require('./routers/userAuthRouters');
 const cors = require('cors');
 
 require('dotenv').config();
@@ -14,6 +15,4 @@ mongoose.connect(MONGO_URI)
         app.listen(PORT, () => console.log(`Database connected successfully\nServer was listening in http://localhost:${PORT}`))
     }).catch((e) => console.log(e.message));
 
-app.use((req, res) => {
-    res.status(200).json({message: "Run successfully"});    
-})
+app.use('/tic_tac_toe', userAuthRouters);
