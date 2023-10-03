@@ -21,4 +21,4 @@ const userAuthModels = new Schema(
     }, {timestamps: true}
 )
 
-module.exports = mongoose.model(userAuthModels);
+module.exports = mongoose.model('userAuthModels', userAuthModels, 'Users');
