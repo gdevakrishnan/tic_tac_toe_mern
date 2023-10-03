@@ -1,14 +1,21 @@
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const userAuthModels = require("../models/userAuthModels");
 
+require('dotenv').config();
+const { SECRET_KEY, EXPIRY_TIME } = process.env;
+
+// User Register
 const addUserDetails = async (req, res) => {
     try {
         const { uname, gmail } = req.body;
         const preUser = await userAuthModels.findOne({gmail});
+
         if (preUser) {
             res.status(200).json({message: "User Already Exist"});
             return;
         }
+
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(req.body.pwd, salt);
         const task = await userAuthModels.create({uname, gmail, pwd: hashPassword});
@@ -18,4 +25,29 @@ const addUserDetails = async (req, res) => {
     }
 }
 
-module.exports = { addUserDetails };
+// User Login
+const getUserDetails = async (req, res) => {
+    try {
+        const { uname, gmail, pwd } = req.body;
+        const preUser = await userAuthModels.findOne({ gmail });
+
+        if (!preUser) {
+            res.status(400).json({message: "User Does not Exist"});
+            return;
+        }
+        
+        const decryptPassword = await bcrypt.compare(pwd, preUser.pwd);
+        
+        if (decryptPassword, uname === preUser.uname) {
+            const token = jwt.sign({...preUser}, SECRET_KEY, {expiresIn: EXPIRY_TIME});
+            res.status(200).json({message: "User Login Successfully", token});
+            return;
+        }
+        
+        res.status(400).json({message: "User Does not Exist"});
+    }   catch(e) {
+        res.status(400).json({message: e.message});
+    }
+}
+
+module.exports = { addUserDetails, getUserDetails };
