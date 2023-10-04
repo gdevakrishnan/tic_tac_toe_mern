@@ -50,4 +50,15 @@ const getUserDetails = async (req, res) => {
     }
 }
 
-module.exports = { addUserDetails, getUserDetails };
+// Verify User using JWT Token
+const userVerify = async (req, res) => {
+    try {
+        const { token } = req.body;
+        const data = await jwt.verify(token, SECRET_KEY)._doc;
+        res.status(200).json({message: "verified successfully", data});
+    }   catch(e) {
+        res.status(400).json({message: e.message});
+    }
+}
+
+module.exports = { addUserDetails, getUserDetails, userVerify };
