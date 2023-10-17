@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import PageNotFound from './components/PageNotFound';
 import Help from './components/Help';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='*' element={<PageNotFound />} />
         </Routes>
         <Outlet />
+        <Footer />
       </Router>
     </Fragment>
   )
