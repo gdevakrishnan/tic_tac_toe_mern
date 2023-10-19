@@ -7,3 +7,9 @@ export const addUserDetails = async (userDetails) => {
     const response = {status: task.status, message: task.data.message};
     return response;
 }
+
+export const getUserDetails = async (userDetails) => {
+    const task = await Axios.post(`${BASE_URL}/login`, userDetails);
+    const response = {status: task.status, message: task.data.message, token: task.data.token};
+    return response;
+}

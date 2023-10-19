@@ -35,7 +35,7 @@ function Register() {
           nav('/login');
         }
       })
-      .catch((e) => setMsg(e.message));
+      .catch((e) => console.log(e.message));
   }
 
   return (
@@ -66,6 +66,7 @@ function Register() {
                   autoComplete="uname"
                   required
                   className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={userDetails.uname}
                   onChange={(e) => handleEdit(e)}
                 />
               </div>
@@ -83,6 +84,7 @@ function Register() {
                   autoComplete="gmail"
                   required
                   className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={userDetails.gmail}
                   onChange={(e) => handleEdit(e)}
                 />
               </div>
@@ -102,6 +104,7 @@ function Register() {
                   autoComplete="pwd"
                   required
                   className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={userDetails.pwd}
                   onChange={(e) => handleEdit(e)}
                 />
               </div>
@@ -121,6 +124,7 @@ function Register() {
                   autoComplete="cpwd"
                   required
                   className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={userDetails.cpwd}
                   onChange={(e) => handleEdit(e)}
                 />
               </div>
