@@ -47,7 +47,7 @@ function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    <li className='list-none'>
+                  <li className='list-none'>
                       <Link
                         key={'dashboard'}
                         to={'/'}
@@ -191,19 +191,65 @@ function Navbar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={classNames(
-                    item.current ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'rounded-md px-3 py-2 text-sm font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <li className='list-none'>
+                      <Link
+                        key={'dashboard'}
+                        to={'/'}
+                        className={classNames(
+                          true ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                      >
+                        Dashboard
+                      </Link>
+                    </li>
+
+                    {
+                      (!userDetails) ? (
+                        <Fragment>
+                          <li className='list-none'>
+                            <Link
+                              key={'Register'}
+                              to={'/register'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              Register
+                            </Link>
+                          </li>
+
+                          <li className='list-none'>
+                            <Link
+                              key={'login'}
+                              to={'/login'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              Login
+                            </Link>
+                          </li>
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          <li className='list-none'>
+                            <Link
+                              key={'logout'}
+                              to={'/logout'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              Logout
+                            </Link>
+                          </li>
+                        </Fragment>
+                      )
+                    }
             </div>
           </Disclosure.Panel>
         </>
