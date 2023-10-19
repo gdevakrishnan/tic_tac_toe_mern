@@ -48,8 +48,8 @@ function App() {
           }
           <Routes>
             <Route index path='/' element={<Dashboard />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/Login' element={<Login />} />
+            <Route path='/register' element={(!userDetails) ? <Register /> : <PageNotFound />} />
+            <Route path='/Login' element={(!userDetails) ? <Login /> : <PageNotFound />} />
             <Route path='/Logout' element={(userDetails) ? <Logout /> : <PageNotFound />} />
             <Route index path='/help' element={<Help />} />
             <Route path='*' element={<PageNotFound />} />
