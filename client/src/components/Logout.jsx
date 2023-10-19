@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import userContext from '../context/userContext';
 
 function Logout() {
-  const { setMsg, setUserDetails } = useContext(userContext);
+  const { setMsg } = useContext(userContext);
   const nav = useNavigate();
 
   const handleLogout = (e) => {
