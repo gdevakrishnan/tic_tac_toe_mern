@@ -10,11 +10,18 @@ const addUserDetails = async (req, res) => {
     try {
         const { uname, gmail } = req.body;
         const preUser = await userAuthModels.findOne({gmail});
-
+        
         if (preUser) {
             res.status(200).json({message: "User Already Exist"});
             return;
         }
+        
+        const preUname = await userAuthModels.findOne({uname});
+        if (preUname) {
+            res.status(200).json({message: "Username Already Exist"});
+            return;
+        }
+
 
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(req.body.pwd, salt);
