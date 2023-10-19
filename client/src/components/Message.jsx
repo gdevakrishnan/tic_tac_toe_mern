@@ -4,7 +4,7 @@ import userContext from '../context/userContext'
 function Message() {
     const { msg, setMsg } = useContext(userContext);
     return (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-20 w-5/6 sm:w-4/6 md:w-3/6 lg:w-3/6 xl:w-3/6 fixed right-2" role="alert">
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-20 w-5/6 sm:w-4/6 md:w-3/6 lg:w-2/5 xl:w-2/5 fixed right-2" role="alert">
             <strong className="font-bold w-11/12 block">{msg}</strong>
             <button onClick={() => setMsg("")} className='h-1'>
                 <span className="absolute top-0 bottom-0 right-0 px-4 py-3">

@@ -26,7 +26,7 @@ function Logout() {
             >
               Logout
             </button>
-            <Link href="/" className="text-sm font-semibold text-gray-900">
+            <Link to={'/'} className="text-sm font-semibold text-gray-900">
               Go back home <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
