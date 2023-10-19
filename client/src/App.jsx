@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import Register from './components/register';
 import Dashboard from './components/Dashboard';
@@ -10,10 +10,33 @@ import Help from './components/Help';
 import Footer from './components/Footer';
 import Message from './components/Message';
 import userContext from './context/userContext';
+import { userVerify } from './services/serviceWorker';
+
 
 function App() {
   const [msg, setMsg] = useState("");
-  const contexts = {msg, setMsg};
+  const [userDetails, setUserDetails] = useState(null);
+  const contexts = { 
+    msg, 
+    setMsg, 
+    userDetails, 
+    setUserDetails 
+  };
+
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      userVerify({ token })
+        .then((response) => {
+          if (response.message === "verified successfully") {
+            setUserDetails(response.data);
+          }
+        })
+        .catch((e) => console.log(e.message));
+    } else {
+      setUserDetails(null);
+    }
+  }), [];
 
   return (
     <Fragment>
@@ -27,7 +50,7 @@ function App() {
             <Route index path='/' element={<Dashboard />} />
             <Route path='/register' element={<Register />} />
             <Route path='/Login' element={<Login />} />
-            <Route path='/Logout' element={<Logout />} />
+            <Route path='/Logout' element={(userDetails) ? <Logout /> : <PageNotFound />} />
             <Route index path='/help' element={<Help />} />
             <Route path='*' element={<PageNotFound />} />
           </Routes>

@@ -13,3 +13,9 @@ export const getUserDetails = async (userDetails) => {
     const response = {status: task.status, message: task.data.message, token: task.data.token};
     return response;
 }
+
+export const userVerify = async (userDetails) => {
+    const task = await Axios.post(`${BASE_URL}/user_verify`, userDetails);
+    const response = {status: task.status,message: task.data.message, data: task.data.decoded}
+    return response;
+} 

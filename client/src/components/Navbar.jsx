@@ -1,20 +1,24 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
+import userContext from '../context/userContext'
 
-const navigation = [
-  { name: 'Dashboard', href: '/', current: true },
-  { name: 'Register', href: '/register', current: false },
-  { name: 'Login', href: '/login', current: false },
-  { name: 'Logout', href: '/logout', current: false },
-]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 function Navbar() {
+  const navigation = [
+    { name: 'Dashboard', href: '/', current: true },
+    { name: 'Register', href: '/register', current: false },
+    { name: 'Login', href: '/login', current: false },
+    { name: 'Logout', href: '/logout', current: false },
+  ]
+
+  const { userDetails } = useContext(userContext);
+
   return (
     <Disclosure as="nav" className="bg-gray-800 fixed top-0 w-screen">
       {({ open }) => (
@@ -43,19 +47,65 @@ function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    <li className='list-none'>
                       <Link
-                        key={item.name}
-                        to={item.href}
+                        key={'dashboard'}
+                        to={'/'}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          true ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
-                        aria-current={item.current ? 'page' : undefined}
                       >
-                        {item.name}
+                        Dashboard
                       </Link>
-                    ))}
+                    </li>
+
+                    {
+                      (!userDetails) ? (
+                        <Fragment>
+                          <li className='list-none'>
+                            <Link
+                              key={'Register'}
+                              to={'/register'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              Register
+                            </Link>
+                          </li>
+
+                          <li className='list-none'>
+                            <Link
+                              key={'login'}
+                              to={'/login'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              Login
+                            </Link>
+                          </li>
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          <li className='list-none'>
+                            <Link
+                              key={'logout'}
+                              to={'/logout'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              Logout
+                            </Link>
+                          </li>
+                        </Fragment>
+                      )
+                    }
                   </div>
                 </div>
               </div>
