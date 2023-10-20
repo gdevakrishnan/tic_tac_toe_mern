@@ -14,11 +14,25 @@ const userAuthModels = new Schema(
             type: String,
             require: true
         },
-        cpwd: {
-            type: String,
-            require: true
-        }
-    }, {timestamps: true}
+        leaderboard: [
+            {
+                fplayer: {
+                    type: String,
+                    require: true
+                },
+
+                splayer: {
+                    type: String,
+                    require: true
+                },
+
+                result: {
+                    type: String,
+                    require: true
+                }
+            }
+        ]
+    }, { timestamps: true }
 )
 
 module.exports = mongoose.model('userAuthModels', userAuthModels, 'Users');
