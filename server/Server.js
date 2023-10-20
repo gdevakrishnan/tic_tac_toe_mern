@@ -3,6 +3,7 @@ const app = express();
 const { default: mongoose } = require('mongoose');
 const userAuthRouters = require('./routers/userAuthRouters');
 const cors = require('cors');
+const playersRouters = require('./routers/playersRouters');
 
 require('dotenv').config();
 const {MONGO_URI, PORT} = process.env;
@@ -16,3 +17,4 @@ mongoose.connect(MONGO_URI)
     }).catch((e) => console.log(e.message));
 
 app.use('/tic_tac_toe', userAuthRouters);
+app.use('/tic_tac_toe/play', playersRouters);
