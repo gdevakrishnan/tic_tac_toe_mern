@@ -11,16 +11,20 @@ import Footer from './components/Footer';
 import Message from './components/Message';
 import userContext from './context/userContext';
 import { userVerify } from './services/serviceWorker';
+import Players from './components/Players';
+import PlayGround from './components/PlayGround';
 
 
 function App() {
   const [msg, setMsg] = useState("");
   const [userDetails, setUserDetails] = useState(null);
+  const [play, setPlay] = useState(null);
   const contexts = { 
     msg, 
     setMsg, 
     userDetails, 
-    setUserDetails 
+    setUserDetails,
+    setPlay
   };
 
   useEffect(() => {
@@ -51,6 +55,8 @@ function App() {
             <Route path='/register' element={(!userDetails) ? <Register /> : <PageNotFound />} />
             <Route path='/Login' element={(!userDetails) ? <Login /> : <PageNotFound />} />
             <Route path='/Logout' element={(userDetails) ? <Logout /> : <PageNotFound />} />
+            <Route path='/play' element={(userDetails) ? <Players /> : <PageNotFound />} />
+            <Route path='/play/playground' element={(play) ? <PlayGround /> : <PageNotFound />} />
             <Route index path='/help' element={<Help />} />
             <Route path='*' element={<PageNotFound />} />
           </Routes>

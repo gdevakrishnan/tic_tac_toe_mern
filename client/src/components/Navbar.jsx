@@ -10,13 +10,6 @@ function classNames(...classes) {
 }
 
 function Navbar() {
-  const navigation = [
-    { name: 'Dashboard', href: '/', current: true },
-    { name: 'Register', href: '/register', current: false },
-    { name: 'Login', href: '/login', current: false },
-    { name: 'Logout', href: '/logout', current: false },
-  ]
-
   const { userDetails } = useContext(userContext);
 
   return (
@@ -91,6 +84,19 @@ function Navbar() {
                         </Fragment>
                       ) : (
                         <Fragment>
+                          <li className='list-none'>
+                            <Link
+                              key={'play'}
+                              to={'/play'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              play
+                            </Link>
+                          </li>
+                          
                           <li className='list-none'>
                             <Link
                               key={'logout'}
@@ -226,7 +232,20 @@ function Navbar() {
                         </Fragment>
                       ) : (
                         <Fragment>
-                          <li className='list-none'>
+                          <li className="list-none">
+                          <Link
+                              key={'play'}
+                              to={'/play'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              play
+                            </Link>
+                          </li>
+                          
+                          <li className='list-none'>                            
                             <Link
                               key={'logout'}
                               to={'/logout'}
