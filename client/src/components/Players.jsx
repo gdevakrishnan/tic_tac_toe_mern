@@ -3,9 +3,7 @@ import userContext from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
 
 function Players() {
-    const { setMsg, setPlay } = useContext(userContext);
-    const initialState = { fplayer: "", splayer: "", result: "" };
-    const [matchDetails, setMatchDetails] = useState(initialState);
+    const { setMsg, setPlay, initialState, matchDetails, setMatchDetails } = useContext(userContext);
     const nav = useNavigate();
 
     const handleEdit = (e) => {
@@ -19,7 +17,6 @@ function Players() {
             setMsg("Enter all the fields");
         } else {
             setPlay("Allow");
-            setMatchDetails(initialState);
             nav('/play/playground');
         }
     }

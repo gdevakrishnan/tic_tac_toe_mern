@@ -19,12 +19,17 @@ function App() {
   const [msg, setMsg] = useState("");
   const [userDetails, setUserDetails] = useState(null);
   const [play, setPlay] = useState(null);
-  const contexts = { 
-    msg, 
-    setMsg, 
-    userDetails, 
+  const initialState = { fplayer: "", splayer: "", result: "" };
+  const [matchDetails, setMatchDetails] = useState(initialState);
+  const contexts = {
+    msg,
+    setMsg,
+    userDetails,
     setUserDetails,
-    setPlay
+    setPlay,
+    initialState,
+    matchDetails,
+    setMatchDetails
   };
 
   useEffect(() => {
