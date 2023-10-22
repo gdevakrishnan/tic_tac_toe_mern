@@ -13,7 +13,7 @@ function PlayGround() {
     if (result === 'X') {
       updateLeaderBoard({ "_id": userDetails._id, newLeaderBoard: { ...matchDetails, "result": matchDetails.fplayer } });
     } else {
-      updateLeaderBoard({ "_id": userDetails._id, newLeaderBoard: { ...matchDetails, "result": matchDetails.fplayer } });
+      updateLeaderBoard({ "_id": userDetails._id, newLeaderBoard: { ...matchDetails, "result": matchDetails.splayer } });
     }
   }
 
