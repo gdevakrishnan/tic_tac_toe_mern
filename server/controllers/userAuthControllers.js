@@ -68,7 +68,7 @@ const userVerify = async (req, res) => {
     try {
         const { token } = req.body;
         const data = await jwt.verify(token, SECRET_KEY)._doc;
-        res.status(200).json({message: "verified successfully", decoded: {_id: data._id, uname: data.uname, gmail: data.gmail, id: data._id, leaderboard: data.leaderboard}});
+        res.status(200).json({message: "verified successfully", decoded: {_id: data._id, uname: data.uname, gmail: data.gmail, id: data._id}});
     }   catch(e) {
         res.status(400).json({message: e.message});
     }

@@ -19,3 +19,9 @@ export const userVerify = async (userDetails) => {
     const response = {status: task.status,message: task.data.message, data: task.data.decoded}
     return response;
 } 
+
+export const updateLeaderBoard = async (result) => {
+    const task = await Axios.post(`${BASE_URL}/play/update_leaderboard`, result);
+    const response = task.data;
+    return response;
+}

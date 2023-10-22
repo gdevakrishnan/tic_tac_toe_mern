@@ -21,6 +21,23 @@ function App() {
   const [play, setPlay] = useState(null);
   const initialState = { fplayer: "", splayer: "", result: "" };
   const [matchDetails, setMatchDetails] = useState(initialState);
+
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      userVerify({ token })
+        .then((response) => {
+          if (response.message === "verified successfully") {
+            // console.log(response.data);
+            setUserDetails(response.data);
+          }
+        })
+        .catch((e) => console.log(e.message));
+    } else {
+      setUserDetails(null);
+    }
+  }), [userDetails];
+
   const contexts = {
     msg,
     setMsg,
@@ -29,23 +46,8 @@ function App() {
     setPlay,
     initialState,
     matchDetails,
-    setMatchDetails
+    setMatchDetails,
   };
-
-  useEffect(() => {
-    let token = localStorage.getItem('token');
-    if (token) {
-      userVerify({ token })
-        .then((response) => {
-          if (response.message === "verified successfully") {
-            setUserDetails(response.data);
-          }
-        })
-        .catch((e) => console.log(e.message));
-    } else {
-      setUserDetails(null);
-    }
-  }), [];
 
   return (
     <Fragment>

@@ -3,13 +3,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import userContext from '../context/userContext';
 
 function Logout() {
-  const { setMsg } = useContext(userContext);
+  const { setMsg, setMatchDetails, setUserDetails } = useContext(userContext);
   const nav = useNavigate();
 
   const handleLogout = (e) => {
     e.preventDefault;
     localStorage.clear();
     setMsg("Logout Successfully");
+    setMatchDetails({ fplayer: "", splayer: "", result: "" });
+    setUserDetails(null);
     nav('/login');
   }
 

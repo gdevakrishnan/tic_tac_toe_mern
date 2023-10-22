@@ -1,15 +1,25 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import userContext from '../context/userContext';
+import { updateLeaderBoard } from '../services/serviceWorker';
 
 function PlayGround() {
   const [player, setPlayer] = useState('X');
   const [box, setBox] = useState({ 0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' });
   const [match, setMatch] = useState(true);
   const [msg, setMsg] = useState('');
-  const { matchDetails } = useContext(userContext);
+  const { userDetails, matchDetails } = useContext(userContext);
+
+  const winnerFunction = (result) => {
+    if (result === 'X') {
+      updateLeaderBoard({ "_id": userDetails._id, newLeaderBoard: { ...matchDetails, "result": matchDetails.fplayer } });
+    } else {
+      updateLeaderBoard({ "_id": userDetails._id, newLeaderBoard: { ...matchDetails, "result": matchDetails.fplayer } });
+    }
+  }
 
   useEffect(() => {
     if (match && box[0] !== '' && box[1] !== '' && box[2] !== '' && box[0] === box[1] && box[1] === box[2]) {
+      winnerFunction(box[0]);
       setMsg(`${box[0]} - player wins`)
       setMatch(false);
     }
@@ -65,7 +75,7 @@ function PlayGround() {
       return;
     }
 
-    setBox({ ...box, [turn]: player }), player === 'X' ? setPlayer('0') : setPlayer('X');
+    setBox({ ...box, [turn]: player }), player === 'X' ? setPlayer('O') : setPlayer('X');
   }
 
   const reMatch = () => {
