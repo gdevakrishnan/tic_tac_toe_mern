@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { getLeaderBoard } from '../services/serviceWorker'
+import { delete_leaderboard, getLeaderBoard } from '../services/serviceWorker'
 import userContext from '../context/userContext'
 import NoRecords from './NoRecords';
 
 function Leaderboard() {
-    const { userDetails } = useContext(userContext);
+    const { userDetails, setMsg } = useContext(userContext);
     const { _id } = userDetails;
     const [leaderBoardDetails, setLeaderBoardDetails] = useState(null);
 
@@ -13,6 +13,15 @@ function Leaderboard() {
             .then((response) => setLeaderBoardDetails(response))
             .catch((e) => console.log(e.message));
     }), [];
+
+    const handleClear = (e) => {
+        e.preventDefault;
+        delete_leaderboard({ _id })
+            .then((response) => {
+                setMsg(response.message);
+            })
+            .catch((e) => console.log(e.message));
+    }
 
     return (
         (leaderBoardDetails && leaderBoardDetails.length >= 1) ? (
@@ -52,6 +61,8 @@ function Leaderboard() {
                             }
                         </tbody>
                     </table>
+                
+                    <button className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-10' onClick={(e) => handleClear(e)}>Clear</button>
                 </div>
             </section>
         ) : <NoRecords />

@@ -31,3 +31,9 @@ export const getLeaderBoard = async (_id) => {
     const response = task.data.leaderBoard
     return response;
 }
+
+export const delete_leaderboard = async (_id) => {
+    const task = await Axios.post(`${BASE_URL}/play/delete_leaderboard`, _id);
+    const response = task.data;
+    return response;
+}

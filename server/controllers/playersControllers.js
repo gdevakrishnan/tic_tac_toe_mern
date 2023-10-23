@@ -25,4 +25,16 @@ const getLeaderBoardDetails = async (req, res) => {
     }
 }
 
-module.exports = { updateLeaderBoard, getLeaderBoardDetails };
+// Delete Leaderboard
+
+const delLeaderBoardDetails = async (req, res) => {
+    try {
+        const { _id } = req.body;
+        const data = await userAuthModels.findByIdAndUpdate({_id}, {$set: {leaderboard: []}});
+        res.status(200).json({message: "Leaderboard Clear Successfully"});
+    }   catch (e) {
+        res.status(400).json({message: e.message});
+    }
+}
+
+module.exports = { updateLeaderBoard, getLeaderBoardDetails, delLeaderBoardDetails };
