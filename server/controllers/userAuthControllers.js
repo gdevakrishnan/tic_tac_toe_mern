@@ -12,13 +12,13 @@ const addUserDetails = async (req, res) => {
         const preUser = await userAuthModels.findOne({gmail});
         
         if (preUser) {
-            res.status(400).json({message: "User Already Exist"});
+            res.status(200).json({message: "User Already Exist"});
             return;
         }
         
         const preUname = await userAuthModels.findOne({uname});
         if (preUname) {
-            res.status(400).json({message: "Username Already Exist"});
+            res.status(200).json({message: "Username Already Exist"});
             return;
         }
 
@@ -57,7 +57,7 @@ const getUserDetails = async (req, res) => {
             return;
         }
         
-        res.status(400).json({message: "User Does not Exist"});
+        res.status(200).json({message: "User Does not Exist"});
     }   catch(e) {
         res.status(400).json({message: e.message});
     }

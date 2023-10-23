@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import userContext from '../context/userContext';
 import { addUserDetails } from '../services/serviceWorker';
+import validator from 'validator';
 
 
 function Register() {
@@ -19,6 +20,16 @@ function Register() {
     e.preventDefault();
     if (!userDetails.uname || !userDetails.gmail || !userDetails.pwd || !userDetails.cpwd) {
       setMsg("Enter all the fields");
+      return;
+    }
+
+    if (!(validator.isEmail(userDetails.gmail))) { 
+      setMsg('Invalid Email');
+      return;
+    }
+
+    if (userDetails.pwd.length < 6) {
+      setMsg("Password needs minimum 6 charachters");
       return;
     }
 
