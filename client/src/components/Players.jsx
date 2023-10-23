@@ -11,6 +11,11 @@ function Players() {
         setMatchDetails({ ...matchDetails, [e.target.id]: e.target.value });
     }
 
+    const handleClear = (e) => {
+        e.preventDefault();
+        setMatchDetails(initialState);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!matchDetails.fplayer || !matchDetails.splayer) {
@@ -51,7 +56,7 @@ function Players() {
                                     value={matchDetails.fplayer}
                                     className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     onChange={(e) => handleEdit(e)}
-                                    />
+                                />
                             </div>
                         </div>
 
@@ -73,7 +78,7 @@ function Players() {
                             </div>
                         </div>
 
-                        <div>
+                        <div className='flex gap-2'>
                             <input
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -81,6 +86,10 @@ function Players() {
                                 value={'Start Game'}
                             /
                             >
+
+                            <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={(e) => handleClear(e)} value={'Start Game'}>
+                                Clear
+                            </button>
                         </div>
                     </form>
                 </div>
