@@ -40,7 +40,7 @@ function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                  <li className='list-none'>
+                    <li className='list-none'>
                       <Link
                         key={'dashboard'}
                         to={'/'}
@@ -109,7 +109,7 @@ function Navbar() {
                               Leaderboard
                             </Link>
                           </li>
-                          
+
                           <li className='list-none'>
                             <Link
                               key={'logout'}
@@ -125,144 +125,136 @@ function Navbar() {
                         </Fragment>
                       )
                     }
+                    <li className='list-none'>
+                      <Link
+                        key={'help'}
+                        to={'/help'}
+                        className={classNames(
+                          false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                      >
+                        help
+                      </Link>
+                    </li>
                   </div>
                 </div>
-              </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
-                  <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to={'/help'}
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Help
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to={'/logout'}
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Sign out
-                          </Link>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
               </div>
             </div>
           </div>
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-            <li className='list-none'>
+              <li className='list-none'>
+                <Link
+                  key={'dashboard'}
+                  to={'/'}
+                  className={classNames(
+                    true ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'rounded-md px-3 py-2 text-sm font-medium'
+                  )}
+                >
+                  Dashboard
+                </Link>
+              </li>
+
+              {
+                (!userDetails) ? (
+                  <Fragment>
+                    <li className='list-none'>
                       <Link
-                        key={'dashboard'}
-                        to={'/'}
+                        key={'Register'}
+                        to={'/register'}
                         className={classNames(
-                          true ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                          false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                       >
-                        Dashboard
+                        Register
                       </Link>
                     </li>
 
-                    {
-                      (!userDetails) ? (
-                        <Fragment>
-                          <li className='list-none'>
-                            <Link
-                              key={'Register'}
-                              to={'/register'}
-                              className={classNames(
-                                false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
-                                'rounded-md px-3 py-2 text-sm font-medium'
-                              )}
-                            >
-                              Register
-                            </Link>
-                          </li>
+                    <li className='list-none'>
+                      <Link
+                        key={'login'}
+                        to={'/login'}
+                        className={classNames(
+                          false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                      >
+                        Login
+                      </Link>
+                    </li>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <li className="list-none">
+                      <Link
+                        key={'play'}
+                        to={'/play'}
+                        className={classNames(
+                          false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                      >
+                        play
+                      </Link>
+                    </li>
 
-                          <li className='list-none'>
-                            <Link
-                              key={'login'}
-                              to={'/login'}
-                              className={classNames(
-                                false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
-                                'rounded-md px-3 py-2 text-sm font-medium'
-                              )}
-                            >
-                              Login
-                            </Link>
-                          </li>
-                        </Fragment>
-                      ) : (
-                        <Fragment>
-                          <li className="list-none">
-                          <Link
-                              key={'play'}
-                              to={'/play'}
-                              className={classNames(
-                                false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
-                                'rounded-md px-3 py-2 text-sm font-medium'
-                              )}
-                            >
-                              play
-                            </Link>
-                          </li>
-                          
-                          <li className='list-none'>                            
-                            <Link
-                              key={'logout'}
-                              to={'/logout'}
-                              className={classNames(
-                                false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
-                                'rounded-md px-3 py-2 text-sm font-medium'
-                              )}
-                            >
-                              Logout
-                            </Link>
-                          </li>
-                        </Fragment>
-                      )
-                    }
+                    <li className="list-none">
+                      <Link
+                        key={'leaderboard'}
+                        to={'/leaderboard'}
+                        className={classNames(
+                          false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                      >
+                        leaderboard
+                      </Link>
+                    </li>
+
+                    <li className="list-none">
+                      <Link
+                        key={'profile'}
+                        to={'/profile'}
+                        className={classNames(
+                          false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                      >
+                        profile
+                      </Link>
+                    </li>
+
+                    <li className='list-none'>
+                      <Link
+                        key={'logout'}
+                        to={'/logout'}
+                        className={classNames(
+                          false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                      >
+                        Logout
+                      </Link>
+                    </li>
+                  </Fragment>
+                )
+              }
+              <li className="list-none">
+                <Link
+                  key={'help'}
+                  to={'/help'}
+                  className={classNames(
+                    false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'rounded-md px-3 py-2 text-sm font-medium'
+                  )}
+                >
+                  help
+                </Link>
+              </li>
             </div>
           </Disclosure.Panel>
         </>
