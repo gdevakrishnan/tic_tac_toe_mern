@@ -19,6 +19,9 @@ function Leaderboard() {
         delete_leaderboard({ _id })
             .then((response) => {
                 setMsg(response.message);
+                getLeaderBoard({ _id })
+                    .then((response) => setLeaderBoardDetails(response))
+                    .catch((e) => console.log(e.message));
             })
             .catch((e) => console.log(e.message));
     }
@@ -52,7 +55,7 @@ function Leaderboard() {
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {aData.splayer}
                                             </th>
-                                            <th scope="row" className={(aData.result === "Draw")? "px-6 py-4 text-red-500 whitespace-nowrap font-bold" : "px-6 py-4 text-green-400 whitespace-nowrap font-bold"}>
+                                            <th scope="row" className={(aData.result === "Draw") ? "px-6 py-4 text-red-500 whitespace-nowrap font-bold" : "px-6 py-4 text-green-400 whitespace-nowrap font-bold"}>
                                                 {aData.result}
                                             </th>
                                         </tr>
@@ -61,7 +64,7 @@ function Leaderboard() {
                             }
                         </tbody>
                     </table>
-                
+
                     <button className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-10' onClick={(e) => handleClear(e)}>Clear</button>
                 </div>
             </section>
