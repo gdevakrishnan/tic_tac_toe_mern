@@ -12,8 +12,10 @@ function PlayGround() {
   const winnerFunction = (result) => {
     if (result === 'X') {
       updateLeaderBoard({ "_id": userDetails._id, newLeaderBoard: { ...matchDetails, "result": matchDetails.fplayer } });
-    } else {
+    } else if (result === 'O') {
       updateLeaderBoard({ "_id": userDetails._id, newLeaderBoard: { ...matchDetails, "result": matchDetails.splayer } });
+    } else {
+      updateLeaderBoard({ "_id": userDetails._id, newLeaderBoard: { ...matchDetails, "result": result} });
     }
   }
 
@@ -23,43 +25,51 @@ function PlayGround() {
       setMsg(`${box[0]} - player wins`)
       setMatch(false);
     }
-
+    
     else if (match && box[3] !== '' && box[4] !== '' && box[5] !== '' && box[3] === box[4] && box[4] === box[5]) {
+      winnerFunction(box[3]);
       setMsg(`${box[3]} - player wins`)
       setMatch(false);
     }
-
+    
     else if (match && box[6] !== '' && box[7] !== '' && box[8] !== '' && box[6] === box[7] && box[7] === box[8]) {
+      winnerFunction(box[6]);
       setMsg(`${box[6]} - player wins`)
       setMatch(false);
     }
-
+    
     else if (match && box[0] !== '' && box[3] !== '' && box[6] !== '' && box[0] === box[3] && box[3] === box[6]) {
+      winnerFunction(box[0]);
       setMsg(`${box[0]} - player wins`)
       setMatch(false);
     }
-
+    
     else if (match && box[1] !== '' && box[4] !== '' && box[7] !== '' && box[1] === box[4] && box[4] === box[7]) {
+      winnerFunction(box[1]);
       setMsg(`${box[1]} - player wins`)
       setMatch(false);
     }
-
+    
     else if (match && box[2] !== '' && box[5] !== '' && box[8] !== '' && box[2] === box[5] && box[5] === box[8]) {
+      winnerFunction(box[2]);
       setMsg(`${box[2]} - player wins`)
       setMatch(false);
     }
-
+    
     else if (match && box[0] !== '' && box[4] !== '' && box[8] !== '' && box[0] === box[4] && box[4] === box[8]) {
+      winnerFunction(box[0]);
       setMsg(`${box[0]} - player wins`)
       setMatch(false);
     }
-
+    
     else if (match && box[2] !== '' && box[4] !== '' && box[6] !== '' && box[2] === box[4] && box[4] === box[6]) {
+      winnerFunction(box[2]);
       setMsg(`${box[2]} - player wins`)
       setMatch(false);
     }
-
+    
     else if (match && box[0] !== '' && box[1] !== '' && box[2] !== '' && box[3] !== '' && box[4] !== '' && box[5] !== '' && box[6] !== '' && box[7] !== '' && box[8] !== '') {
+      winnerFunction('Draw');
       setMsg('The Match is Draw');
       setMatch(false);
     }

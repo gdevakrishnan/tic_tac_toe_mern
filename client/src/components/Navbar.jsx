@@ -96,6 +96,19 @@ function Navbar() {
                               play
                             </Link>
                           </li>
+
+                          <li className='list-none'>
+                            <Link
+                              key={'leaderboard'}
+                              to={'/leaderboard'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              Leaderboard
+                            </Link>
+                          </li>
                           
                           <li className='list-none'>
                             <Link

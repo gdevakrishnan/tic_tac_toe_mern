@@ -13,6 +13,7 @@ import userContext from './context/userContext';
 import { userVerify } from './services/serviceWorker';
 import Players from './components/Players';
 import PlayGround from './components/PlayGround';
+import Leaderboard from './components/Leaderboard';
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
             <Route path='/Login' element={(!userDetails) ? <Login /> : <PageNotFound />} />
             <Route path='/Logout' element={(userDetails) ? <Logout /> : <PageNotFound />} />
             <Route path='/play' element={(userDetails) ? <Players /> : <PageNotFound />} />
+            <Route path='/leaderboard' element={(userDetails) ? <Leaderboard /> : <PageNotFound />} />
             <Route path='/play/playground' element={(play) ? <PlayGround /> : <PageNotFound />} />
             <Route index path='/help' element={<Help />} />
             <Route path='*' element={<PageNotFound />} />
