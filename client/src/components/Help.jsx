@@ -6,7 +6,7 @@ function Help() {
             <div className="container mx-auto p-4 pt-24 h-screen">
                 <h1 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 mb-5">Tic Tac Toe</h1>
                 <p className="sm:text-md md:text-md lg:text-xl xl:text-xl xl:px-40 indent-8 text-justify">
-                    Tic Tac Toe is a two-player game played on a 3x3 grid. Players take turns marking a square with their symbol (usually "X" for one player and "O" for the other). The goal is to be the first to get three of their symbols in a row, either horizontally, vertically, or diagonally. The game ends in a draw if the grid is filled with no winner. It's a game of strategy and quick thinking, often played for fun and to pass the time.
+                    Tic Tac Toe, often simply called "Xs and Os," is a two-player game where players take turns marking a 3x3 grid with their respective symbols (X or O). The objective is to be the first to form a line of three of their symbols either horizontally, vertically, or diagonally. It's a simple and popular game, often played on paper or as a board game. The player who succeeds in forming a line of three of their symbols wins the game. If the grid is filled, and no player has won, the game is a draw.
                 </p>
             </div>
         </Fragment>

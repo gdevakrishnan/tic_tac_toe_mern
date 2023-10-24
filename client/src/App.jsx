@@ -1,6 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
-import Register from './components/register';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
@@ -14,6 +13,8 @@ import { userVerify } from './services/serviceWorker';
 import Players from './components/Players';
 import PlayGround from './components/PlayGround';
 import Leaderboard from './components/Leaderboard';
+import Profile from './components/Profile';
+import Register from './components/Register';
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
             <Route path='/Logout' element={(userDetails) ? <Logout /> : <PageNotFound />} />
             <Route path='/play' element={(userDetails) ? <Players /> : <PageNotFound />} />
             <Route path='/leaderboard' element={(userDetails) ? <Leaderboard /> : <PageNotFound />} />
+            <Route path='/profile' element={(userDetails) ? <Profile /> : <PageNotFound />} />
             <Route path='/play/playground' element={(play) ? <PlayGround /> : <PageNotFound />} />
             <Route index path='/help' element={<Help />} />
             <Route path='*' element={<PageNotFound />} />

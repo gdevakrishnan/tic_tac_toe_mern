@@ -1,9 +1,9 @@
 import { Fragment, useContext } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import userContext from '../context/userContext'
-
+import tic_tac_toe from '../assets/tic_tac_toe.png'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -34,7 +34,7 @@ function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    src={tic_tac_toe}
                     alt="Your Company"
                   />
                 </div>
@@ -112,6 +112,19 @@ function Navbar() {
 
                           <li className='list-none'>
                             <Link
+                              key={'profile'}
+                              to={'/profile'}
+                              className={classNames(
+                                false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                            >
+                              profile
+                            </Link>
+                          </li>
+
+                          <li className='list-none'>
+                            <Link
                               key={'logout'}
                               to={'/logout'}
                               className={classNames(
@@ -125,18 +138,6 @@ function Navbar() {
                         </Fragment>
                       )
                     }
-                    <li className='list-none'>
-                      <Link
-                        key={'help'}
-                        to={'/help'}
-                        className={classNames(
-                          false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
-                        )}
-                      >
-                        help
-                      </Link>
-                    </li>
                   </div>
                 </div>
               </div>
@@ -227,7 +228,7 @@ function Navbar() {
                         profile
                       </Link>
                     </li>
-
+                    
                     <li className='list-none'>
                       <Link
                         key={'logout'}
@@ -243,18 +244,6 @@ function Navbar() {
                   </Fragment>
                 )
               }
-              <li className="list-none">
-                <Link
-                  key={'help'}
-                  to={'/help'}
-                  className={classNames(
-                    false ? 'bg-gray-900 text-white block w-11/12' : 'block w-11/12 text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'rounded-md px-3 py-2 text-sm font-medium'
-                  )}
-                >
-                  help
-                </Link>
-              </li>
             </div>
           </Disclosure.Panel>
         </>
