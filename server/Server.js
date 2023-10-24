@@ -11,10 +11,10 @@ const {MONGO_URI, PORT} = process.env;
 app.use(express.json({extended: false}));
 app.use(cors({origin: true, Credential: true}));
 
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(PORT, () => console.log(`Database connected successfully\nServer was listening in http://localhost:${PORT}`));
-    }).catch((e) => console.log(e.message));
+    }).catch((e) => console.log(e));
 
 app.use('/tic_tac_toe', userAuthRouters);
 app.use('/tic_tac_toe/play', playersRouters);
