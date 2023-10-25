@@ -19,22 +19,22 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!userDetails.uname || !userDetails.gmail || !userDetails.pwd || !userDetails.cpwd) {
+    if (!userDetails.uname.trim() || !userDetails.gmail.trim() || !userDetails.pwd.trim() || !userDetails.cpwd.trim()) {
       setMsg("Enter all the fields");
       return;
     }
 
-    if (!(validator.isEmail(userDetails.gmail))) { 
+    if (!(validator.isEmail(userDetails.gmail.trim()))) { 
       setMsg('Invalid Email');
       return;
     }
 
-    if (userDetails.pwd.length < 6) {
+    if (userDetails.pwd.trim().length < 6) {
       setMsg("Password needs minimum 6 charachters");
       return;
     }
 
-    if (userDetails.pwd !== userDetails.cpwd) {
+    if (userDetails.pwd.trim() !== userDetails.cpwd.trim()) {
       setMsg("Password Mismatch");
       return;
     }

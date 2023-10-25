@@ -19,7 +19,7 @@ function Players() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!matchDetails.fplayer || !matchDetails.splayer) {
+        if (!matchDetails.fplayer.trim() || !matchDetails.splayer.trim()) {
             setMsg("Enter all the fields");
         } else {
             setPlay("Allow");

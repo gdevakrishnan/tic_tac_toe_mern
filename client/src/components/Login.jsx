@@ -18,12 +18,12 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!userDetails.uname || !userDetails.gmail || !userDetails.pwd) {
+    if (!userDetails.uname.trim() || !userDetails.gmail.trim() || !userDetails.pwd.trim()) {
       setMsg("Enter all the fields");
       return;
     }
 
-    if (!(validator.isEmail(userDetails.gmail))) { 
+    if (!(validator.isEmail(userDetails.gmail.trim()))) { 
       setMsg('Invalid Email');
       return;
     }
